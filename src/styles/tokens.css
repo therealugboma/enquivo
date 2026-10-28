@@ -1,0 +1,113 @@
+/* VUG Technology design tokens — extracted from https://vug-technology.vercel.app (vision.css, 2026-10-28).
+   Values marked PROPOSAL are extensions not found on the live site. */
+@font-face{font-family:Aspekta;src:url(../assets/fonts/aspekta-0.woff2) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:Aspekta;src:url(../assets/fonts/aspekta-1.woff2) format('woff2');font-weight:450 500;font-display:swap}
+@font-face{font-family:Aspekta;src:url(../assets/fonts/aspekta-2.woff2) format('woff2');font-weight:600 700;font-display:swap}
+@font-face{font-family:"DM Mono";src:url(../assets/fonts/dm-mono.woff2) format('woff2');font-display:swap}
+
+:root{
+  /* surfaces */
+  --bg:#f4f4f5; --card:#ffffff; --field:#f4f4f5; --pane:#ebebed;
+  /* ink */
+  --ink:#08080a; --ink-2:#373e49; --ink-3:#4b515b; --mut:#646b76;
+  /* lines */
+  --hl:#e5e6e7; --line:#c9cbcf; --track:#d9dbde; --dot:rgba(8,8,10,.07);
+  /* action */
+  --cta:#111111; --cta-ink:#ffffff; --cta-hover:#2a2b2f;
+  /* the one accent: VUG red */
+  --acc:#d5001c; --acc-soft:rgba(213,0,28,.08); --acc-col:rgba(213,0,28,.035);
+  /* status */
+  --green:#4f8a3a; --green-soft:rgba(106,190,129,.16); --amber:#a8740a; --amber-soft:rgba(238,183,67,.18);
+  --red-soft:var(--acc-soft); /* PROPOSAL: error state reuses accent */
+  /* inverse (always-dark bands: final CTA, footer, demo panels) */
+  --inv-bg:#0f1012; --inv-card:#1a1b1f; --inv-field:#232428; --inv-ink:#ececee; --inv-ink3:#b4b7bd; --inv-mut:#8b8f96; --inv-hl:rgba(255,255,255,.08); --inv-line:#3a3c41; --inv-acc:#f0283a;
+  /* elevation */
+  --shadow:0 1px 2px rgba(8,8,10,.04); --pop:0 24px 60px rgba(8,8,10,.10);
+  --float:0 10px 30px rgba(8,8,10,.18),0 0 0 1px rgba(255,255,255,.1);
+  --panel:0 30px 80px -30px rgba(8,8,10,.4);
+  /* glass (controls only) */
+  --glass-b:rgba(20,20,20,.16); --glass-ring:rgba(20,20,20,.06); --glass-sh:0 2px 4px rgba(0,0,0,.12); --glass-blur:4px;
+  /* type */
+  --f-ui:Aspekta,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"DM Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --fs-label:11px; --fs-cta:12.5px; --fs-sm:14px; --fs-body:15px; --fs-lead:16px; --fs-h3:16px;
+  --fs-h2:clamp(24px,3vw,30px); --fs-h1:clamp(32px,3.9vw,50px); --fs-form-title:32px;
+  --lh-body:1.55; --lh-lead:1.6; --lh-h2:1.25; --lh-h1:1.08;
+  --ls-label:.06em; --ls-cta:.04em; --ls-head:-.01em; --ls-tight:-.035em;
+  /* radii */
+  --r-xs:2px; --r-sm:6px; --r-md:10px; --r-field:12px; --r-lg:14px; --r-xl-16:16px; --r-card:20px; --r-island:22px; --r-xl:28px; --r-pill:999px;
+  /* spacing (observed values) */
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:20px; --s-6:24px; --s-8:32px; --s-10:40px; --s-12:48px; --s-14:56px; --s-18:72px; --s-30:120px;
+  /* layout */
+  --w:1120px; --bp-sm:560px; --bp-md:720px; --bp-lg:900px;
+  /* motion */
+  --ease:cubic-bezier(.22,1,.36,1); --ease-drawer:cubic-bezier(.32,.72,0,1);
+  --d-fast:.15s; --d-theme:.3s; --d-morph:.55s; --d-fill:.6s;
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --bg:#1d1e22; --card:#25272c; --field:#1d1e22; --pane:#2a2c31;
+  --ink:#dcdee1; --ink-2:#c3c6cb; --ink-3:#a8acb2; --mut:#8e9299;
+  --hl:rgba(255,255,255,.08); --line:#5a5d63; --track:rgba(255,255,255,.14); --dot:rgba(255,255,255,.06);
+  --cta:#ffffff; --cta-ink:#111111; --cta-hover:#e5e6e7;
+  --acc:#f0283a; --acc-soft:rgba(240,40,58,.14); --acc-col:rgba(240,40,58,.06);
+  --green:#84e29e; --green-soft:rgba(132,226,158,.12); --amber:#ffcf5c; --amber-soft:rgba(255,207,92,.14);
+  --shadow:none; --pop:0 24px 60px rgba(0,0,0,.45);
+  --glass-b:#525252; --glass-ring:rgba(255,255,255,.14); --glass-sh:none;
+  color-scheme:dark;
+}
+/* inverse band: put .inv on any section to get the always-dark treatment */
+.inv{background:var(--inv-bg);color:var(--inv-ink);--bg:var(--inv-bg);--ink:var(--inv-ink);--ink-3:var(--inv-ink3);--mut:var(--inv-mut);--card:var(--inv-card);--field:var(--inv-field);--hl:var(--inv-hl);--line:var(--inv-line);--track:rgba(255,255,255,.12);--acc:#f0283a;--green:#84e29e;--cta:#fff;--cta-ink:#111;--cta-hover:#e5e6e7}
+
+/* ---- base (verbatim from site) ---- */
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:var(--fs-body);line-height:var(--lh-body);-webkit-font-smoothing:antialiased;transition:background-color .3s var(--ease),color .3s var(--ease)}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0;padding:0}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px;border-radius:6px}
+.wrap{max-width:var(--w);margin:0 auto;padding-inline:16px}
+h1,h2,h3{font-weight:400;margin:0;text-wrap:balance;letter-spacing:var(--ls-head)}
+h1{font-size:var(--fs-h1);line-height:var(--lh-h1);max-width:22ch}
+h2{font-size:var(--fs-h2);line-height:var(--lh-h2)}
+h3{font-size:var(--fs-h3);font-weight:450;line-height:1.35;letter-spacing:0}
+p{margin:0}
+.lead{color:var(--ink-3);font-size:var(--fs-lead);line-height:var(--lh-lead);max-width:56ch}
+.mut{color:var(--mut)}
+.label{font-family:var(--f-mono);font-size:var(--fs-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--mut)}
+.label.acc{color:var(--acc)}
+.dots{background-image:radial-gradient(var(--dot) 1px,transparent 1px);background-size:22px 22px}
+
+/* ---- components ---- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:42px;padding:0 18px;border-radius:var(--r-pill);font-size:14px;white-space:nowrap;text-decoration:none;transition:background-color .15s var(--ease),transform .15s var(--ease),color .15s}
+.btn.cta{position:relative;overflow:hidden;isolation:isolate;background:var(--cta);color:var(--cta-ink);font-family:var(--f-mono);font-size:var(--fs-cta);font-weight:500;letter-spacing:var(--ls-cta);text-transform:uppercase;box-shadow:var(--float)}
+.btn.cta:hover{background:var(--cta-hover)}
+.btn.cta::before{content:"";position:absolute;left:var(--bx,50%);top:var(--by,50%);width:0;height:0;border-radius:50%;background:var(--acc);transform:translate(-50%,-50%);transition:width .6s var(--ease),height .6s var(--ease);z-index:-1}
+.btn.cta:hover::before{width:260%;height:600%}
+.btn.cta.big{height:56px;font-size:13px}
+.glass{position:relative;border:.6px solid var(--glass-b);box-shadow:var(--glass-sh);-webkit-backdrop-filter:blur(var(--glass-blur));backdrop-filter:blur(var(--glass-blur))}
+.btn.glass{color:var(--ink)}
+.btn.glass:hover{background:color-mix(in srgb,var(--ink) 5%,transparent)}
+.icon-btn{width:34px;height:34px;border-radius:999px;display:grid;place-items:center;color:var(--mut)}
+.card{background:var(--card);border:1px solid transparent;border-radius:var(--r-xl);box-shadow:var(--shadow);padding:28px}
+:root[data-theme="dark"] .card{border-color:var(--hl)}
+.island{display:flex;align-items:center;gap:10px;height:34px;padding:0 6px 0 10px;border-radius:var(--r-island);background:var(--cta);color:var(--cta-ink);box-shadow:var(--float)}
+.pill{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 12px;border-radius:999px;background:var(--card)}
+/* forms (from /contact .enquiry-form) */
+.field{display:flex;flex-direction:column;gap:9px;font-size:14px}
+.input,.select,.textarea{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:var(--r-field);width:100%;min-height:48px;padding:14px;transition:border-color .15s var(--ease)}
+.input:focus,.select:focus,.textarea:focus{outline:none;border-color:var(--ink)} /* PROPOSAL */
+/* badges — PROPOSAL built from status tokens + mono label style */
+.badge{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 9px;border-radius:999px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;background:var(--pane);color:var(--ink-3)}
+.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.badge.ok{background:var(--green-soft);color:var(--green)}
+.badge.warn{background:var(--amber-soft);color:var(--amber)}
+.badge.acc{background:var(--acc-soft);color:var(--acc)}
+/* tables — PROPOSAL (site has comparison rows, no data tables) */
+.table{width:100%;border-collapse:collapse;font-size:14px}
+.table th{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);font-weight:400;text-align:left;padding:10px 14px;border-bottom:1px solid var(--hl)}
+.table td{padding:14px;border-bottom:1px solid var(--hl);font-variant-numeric:tabular-nums}
+.table tr:hover td{background:color-mix(in srgb,var(--ink) 2.5%,transparent)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:1ms!important}}
